@@ -1,0 +1,163 @@
+import React from "react";
+import { useEffect, useState } from "react";
+import "./Curre";
+import SearchIcon from "./search.svg";
+import Header from "./myComponents/Header";
+import Match from "./myComponents/Match";
+// import MovieCard from "./MovieCard";
+
+const API_URL =
+	"https://api.cricapi.com/v1/currentMatches?apikey=7d2dc5ae-9763-41fe-8f0d-00217c6a0d8f&offset=0";
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// const CurrentMatch = ({ match }) => {
+// 	return (
+// 		<>
+// 			<div className="movie">
+// 				<div className="details">
+// 					<h3>{match.name}</h3>
+
+// 					<sub>{match.venue}</sub>
+// 					<sub>{match.date}</sub>
+// 					<br />
+// 					<br />
+// 					<img
+// 						src={match.teamInfo[0].img}
+// 						width={100}
+// 						height={100}
+// 						alt={match.teamInfo[0].name}
+// 					/>
+// 					<img
+// 						src={match.teamInfo[1].img}
+// 						width={100}
+// 						height={100}
+// 						alt={match.teamInfo[1].name}
+// 					/>
+// 					<br />
+// 					<br />
+// 					<span className="scoreUpdate">
+// 						{match.score.map((_score) => (
+// 							<p>
+// 								<strong>{_score.inning.replace("Inning 1", "")}</strong>:{" "}
+// 								{_score.r}/{_score.w} - {_score.o} Overs
+// 							</p>
+// 						))}
+// 					</span>
+// 					<br />
+// 					<br />
+// 					<h4>{match.status}</h4>
+// 				</div>
+// 			</div>
+// 		</>
+// 	);
+// };
+///////////////////////////////////////////////////////////////////////////////////////////
+const CurrentMatches = () => {
+	const match1 = {
+		id: "f1d2ca05-0e2b-46f9-95d3-993c02a6a8f7",
+		name: "Austria vs Norway, Final",
+		status: "Austria won by 9 wkts (DLS Method)",
+		venue: "Kerava National Cricket Ground, Kerava",
+		date: "2022-07-31",
+		dateTimeGMT: "2022-07-31T13:00:00",
+		teams: ["Austria", "Norway"],
+		teamInfo: [
+			{
+				name: "Austria",
+				shortname: "AUT",
+				img: "https://cdorgapi.b-cdn.net/img/teams/581-637867646191086862.webp",
+			},
+			{
+				name: "Norway",
+				shortname: "NOR",
+				img: "https://cdorgapi.b-cdn.net/img/teams/636-637867647006202380.webp",
+			},
+		],
+		score: [
+			{
+				r: 77,
+				w: 10,
+				o: 12.4,
+				inning: "Norway Inning 1",
+			},
+			{
+				r: 77,
+				w: 1,
+				o: 8.1,
+				inning: "Austria Inning 1",
+			},
+		],
+		series_id: "a7cc9052-7f04-41b4-85d6-8cc0589c9b3f",
+		fantasyEnabled: true,
+		bbbEnabled: false,
+		hasSquad: true,
+	};
+
+	const [currentMatches, setCurrentMatches] = useState([]);
+	const [searchTerm, setSearchTerm] = useState("");
+
+	const searchMovies = async () => {
+		const response = await fetch(API_URL);
+		// console.log(response);
+		const data = await response.json();
+		// console.log(data.data);
+		setCurrentMatches(data.data);
+		// console.log(currentMatches);
+
+		// console.log(movies[1]);
+	};
+	useEffect(() => {
+		searchMovies();
+	}, []);
+
+	return (
+		<div className="container">
+			{/* <h1>Movie Land</h1> */}
+			{/* <h1>{movie1.Year}</h1> */}
+			<Header />
+			{/* <div className="search">
+				<input
+					placeholder="Search for movies"
+					value={searchTerm}
+					onChange={(e) => {
+						setSearchTerm(e.target.value);
+					}}
+				/>
+				<img
+					src={SearchIcon}
+					alt="search"
+					onClick={() => {
+						searchMovies(searchTerm);
+					}}
+				/> */}
+			{/* </div> */}
+			{/* {currentMatches?.length > 0 ? ( */}
+			<div className="Container">
+				{/* {currentMatches.map((match) => ( */}
+				<Match match={match1} />
+				<Match match={match1} />
+				<Match match={match1} />
+				<Match match={match1} />
+				<Match match={match1} />
+				<Match match={match1} />
+				<Match match={match1} />
+				<Match match={match1} />
+				<Match match={match1} />
+				<Match match={match1} />
+				<Match match={match1} />
+
+				<Match match={match1} />
+
+				{/* ))} */}
+				<h1>working</h1>
+			</div>
+			{/* ) : (
+					<div className="empty">
+						<h2>"Not Found"</h2>
+					</div>
+				)} */}
+		</div> //app
+	);
+};
+// Parenthesis are used in an arrow function to return an object.
+
+export default CurrentMatches;
