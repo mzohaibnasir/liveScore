@@ -12,6 +12,10 @@ import "./CurrentMatches.css";
 // 34430ad5-275e-4a4a-8baa-6e57721f9ce5
 // 236db577-4dd8-4eab-9183-278745d2a60d
 // 7d2dc5ae-9763-41fe-8f0d-00217c6a0d8f
+// https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=7d2dc5ae-9763-41fe-8f0d-00217c6a0d8f
+
+// news
+// 3130b87889c94b4da1915b306b3755ac
 
 const API_URL =
 	"https://api.cricapi.com/v1/currentMatches?apikey=7d2dc5ae-9763-41fe-8f0d-00217c6a0d8f&offset=1";

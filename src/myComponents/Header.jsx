@@ -21,6 +21,10 @@ const Header = () => {
 					</span>
 					<span className="appTitle">
 						{" "}
+						<Link to="/news">News</Link>
+					</span>
+					<span className="appTitle">
+						{" "}
 						<Link to="/contact">Contact</Link>
 					</span>
 					{/* <span className="appTitle">liveScore</span> */}

@@ -11,6 +11,7 @@ import Footer from "./myComponents/Footer";
 import Feedback from "./myComponents/Feedback";
 import Comments from "./myComponents/Comments";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import News from "./News";
 import ErrorPage from "./myComponents/ErrorPage";
 const App = () => {
 	return (
@@ -21,6 +22,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<CurrentMatches />} />
 				<Route path="/players" element={<PlayersInfo />} />
+				<Route path="/news" element={<News />} />
 				<Route path="/contact" element={<Feedback />} />
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>
