@@ -26,6 +26,7 @@ const App = () => {
 				<Route path="/contact" element={<Feedback />} />
 				<Route path="/*" element={<ErrorPage />} />
 			</Routes>
+			{/* <Comments matchId={10} /> */}
 			<Footer />
 		</Router>
 		// <div className="container">

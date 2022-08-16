@@ -6,24 +6,49 @@ import "../App.css";
 
 const Comments = ({ matchId }) => {
 	const data = useRef();
-	const [comments, setComments] = useState([]);
+	const [comments, setComments] = useState("");
+	const [allComments, setAllComments] = useState([]);
 	const [printComments, setPrintComments] = useState(false);
 	// const getData = (val) => {
 	// 	setComments(val.target.value);
 	// 	console.log(val.target.value);
 	// 	// val.target gives full input box
 	// };
-	const handleClick = () => {
-		// matchId = "a";
-		// console.log(matchId, "******************", data.current.value);
-		setComments((prevComments) => [...prevComments, data.current.value]);
-		// localStorage.setItem(`${matchId}`, JSON.stringify(comments));
-	};
+	// const handleClick = () => {
+	// 	// matchId = "a";
+	// 	// console.log(matchId, "******************", data.current.value);
+	// 	setComments((prevComments) => [...prevComments, data.current.value]);
+	// 	// localStorage.setItem(`${matchId}`, JSON.stringify(comments));
+	// };
 
 	// useEffect(() => {
-	// 	setComments(localStorage.getItem(`${matchId}`));
-	// }, []);
+	// 	setAllComments(localStorage.getItem(`${matchId}`));
+	// }, [allComments]);
 
+	const onSubmit = (e) => {
+		e.preventDefault();
+		if (!comments) {
+			alert("Please add task");
+			return;
+		}
+		addTask({ comments });
+		console.log("comments:", comments);
+		setComments("");
+	};
+
+	const addTask = (task) => {
+		// console.log("ADDED", task);
+		// const id = Math.floor(Math.random() * 1000) + 1;
+		// const newTask = { id, ...task };
+		console.log("Before: ", allComments);
+		AllComments();
+	};
+
+	const AllComments = () => {
+		setAllComments([...allComments, comments]);
+		console.log("ALL COMMENTS:", allComments);
+		// localStorage.setItem(`${matchId}`, JSON.stringify(allComments));
+	};
 	return (
 		<>
 			<br />
@@ -33,45 +58,26 @@ const Comments = ({ matchId }) => {
 				{/* {console.log("FEEDBACK")} */}
 				<div>
 					<div className="commentsArea">
-						{/* <h3>
-							hajsdhkjashdkjashdkjhsjkdhkjashdjka asdasdas asdasdasdasd
-							asdasdasdasdasdas asdasdsd
-						</h3>{" "} */}
 						{/* <h2>{localStorage.getItem(`${matchId}`)}</h2> */}
-						<h2>
-							{/* {JSON.parse(localStorage.getItem(`${matchId}`)).map((c) => (
+						{/* {JSON.parse(localStorage.getItem(`${matchId}`)).map((c) => (
 								<p>{c}</p>
 							))} */}
-						</h2>
-						{/* {printComments ? <h3>{comments}</h3> : null} */}
+						{allComments && allComments.map((c) => <li>{c}</li>)}
 					</div>
-					<div className="inputCommentArea">
-						{/* <form
-							onSubmit={() => {
-								"FORM CALLED";
-							}}
-						> */}
+					<form className="inputCommentArea" onSubmit={onSubmit}>
 						<input
 							type="text"
-							ref={data}
 							className="inputComments"
-							placeholder="ENTER YOUR COMMENT"
-							// onChange={getData}
-							// value="IT WAS FUN12345678901234567890abcdefghijklmnopqrstuvwxyzIT WAS FUN12345678901234567890abcdefghijklmnopqrstuvwxyz"
+							placeholder="Enter your thoughts!"
+							value={comments}
+							onChange={(e) => {
+								setComments(e.target.value);
+								// console.log("COMMENTS:", comments);
+							}}
 						/>
 
-						<button
-							className="commentsButton"
-							type="button"
-							onClick={handleClick}
-						>
-							POST
-						</button>
-						{/* <button onClick={() => setprintComments(true)}>
-								Print Value
-							</button> */}
-						{/* </form> */}
-					</div>
+						<input className="commentsButton" type="submit" value="POST" />
+					</form>
 				</div>
 			</div>
 		</>
